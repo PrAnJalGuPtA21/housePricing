@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
 import './Home.css';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 const url = 'https://zillow-com-api.p.rapidapi.com/search_property?region_ids=54047&currentPage=1';
 const options = {
@@ -13,7 +13,7 @@ const options = {
 };
 
 const Home = () => {
-    const [datas, setDatas] = useState<Hero[]>([]);
+    const [data, setData] = useState<Hero[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
     const fetchdata = async () => {
@@ -21,7 +21,7 @@ const Home = () => {
             const response = await fetch(url, options);
             const result = await response.json();
             console.log(result);
-            setDatas(result);
+            setData(result);
             setLoading(false);
         } catch (error) {
             console.error(error);
@@ -35,7 +35,7 @@ const Home = () => {
 
     interface Hero {
         id: string;
-        imgSrc: never;
+        imgSrc: string;
         statusType: string;
         price: string;
         address: string;
@@ -44,7 +44,6 @@ const Home = () => {
         baths: number;
         area: number;
         brokerName: string;
-
     }
 
     // if (loading) {
@@ -75,31 +74,33 @@ const Home = () => {
         //         </div>
         //     ))}
         // </div>
-        // <div className="card">
-        //     {/* {datas && datas.data.results.map && datas.data.results.map((hero) => ( */}
-        //         <div className="card-compo">
-        //             <div className="img-cont">
-        //                 {/* <img src={hero.Src}/> */}
-        //                 hi
+        <div className="card">
+            {data && data.map && data.map((hero) => (
+                <div className="card-compo">
+                    {hero.results.map((cur)=>{
+
+                    <div className="img-cont">
+                        <img src={cur.imgSrc}/>
+                    </div>
+                    })}
+                </div>
+             ))} 
+        </div>
+        // <div className="contain">
+        //     <div className="flip-card">
+        //         <div className="flip-card-inner">
+        //             <div className="flip-card-front">
+        //                 {/* <img src={hero.imgSrc} alt="Avatar" style={{ width: "300px", height: "300px" }} /> */}
+        //             </div>
+        //             <div className="flip-card-back">
+        //                 <h1>John Doe</h1>
+        //                 <p>Architect & Engineer</p>
+        //                 <p>We love that guy</p>
+        //                 <button onClick={gotoinfo}>Read more</button>
         //             </div>
         //         </div>
-        //     {/* ))} */}
+        //     </div>
         // </div>
-        <div className="contain">
-            <div className="flip-card">
-                <div className="flip-card-inner">
-                    <div className="flip-card-front">
-                        {/* <img src={hero.imgSrc} alt="Avatar" style={{ width: "300px", height: "300px" }} /> */}
-                    </div>
-                    <div className="flip-card-back">
-                        <h1>John Doe</h1>
-                        <p>Architect & Engineer</p>
-                        <p>We love that guy</p>
-                        <Link to="/info" style={{textDecoration:"none"}}>Read More</Link>
-                    </div>
-                </div>
-            </div>
-        </div>
     );
 };
 
