@@ -1,4 +1,3 @@
-import React from 'react'
 import "./Navbar.css"
 import { NavLink } from 'react-router-dom'
 
@@ -11,11 +10,11 @@ const Navbar = () => {
                 </li>
             </ul>
 
-            <NavLink to="/" className="nav1">
-                Sign In</NavLink>
+            <NavLink to="/signup" className="nav1">
+                Sign Up</NavLink>
 
 
-            <NavLink to="/" className="nav1">
+            <NavLink to="/signin" className="nav1">
                 Log out
             </NavLink>
 
