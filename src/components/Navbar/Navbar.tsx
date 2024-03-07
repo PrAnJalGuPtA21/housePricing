@@ -12,11 +12,11 @@ const Navbar = () => {
             </ul>
 
             <NavLink to="/" className="nav1">
-                SignIn</NavLink>
+                Sign In</NavLink>
 
 
             <NavLink to="/" className="nav1">
-                Logout
+                Log out
             </NavLink>
 
         </div>

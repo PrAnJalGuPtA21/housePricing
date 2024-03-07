@@ -29,7 +29,7 @@ li {
 }
 .nav:hover{
     font-size: 22px;
-    color: red;
+    color: rgb(105, 105, 105);
     transition: 2s;
 }
 
